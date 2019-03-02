@@ -1,9 +1,9 @@
 from django.shortcuts import render
-import os
-from google.cloud import language_v1
-from google.cloud.language_v1 import enums
-import six
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="auth.json"
+# import os
+# from google.cloud import language_v1
+# from google.cloud.language_v1 import enums
+# import six
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="auth.json"
 
 
 # Create your views here.
@@ -19,27 +19,20 @@ def index(request):
 
 
 
-import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="auth.json"
 
-from google.cloud import language_v1
-from google.cloud.language_v1 import enums
-import six
+# def sample_analyze_sentiment(content):
 
+#     client = language_v1.LanguageServiceClient()
 
-def sample_analyze_sentiment(content):
+#     #content = 'GOOD'
 
-    client = language_v1.LanguageServiceClient()
+#     if isinstance(content, six.binary_type):
+#         content = content.decode('utf-8')
 
-    #content = 'GOOD'
+#     type_ = enums.Document.Type.PLAIN_TEXT
+#     document = {'type': type_, 'content': content}
 
-    if isinstance(content, six.binary_type):
-        content = content.decode('utf-8')
-
-    type_ = enums.Document.Type.PLAIN_TEXT
-    document = {'type': type_, 'content': content}
-
-    response = client.analyze_sentiment(document)
-    sentiment = response.document_sentiment
-    return('Score: {}'.format(sentiment.score))
+#     response = client.analyze_sentiment(document)
+#     sentiment = response.document_sentiment
+#     return('Score: {}'.format(sentiment.score))
 
