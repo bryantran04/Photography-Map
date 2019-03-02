@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-<<<<<<< HEAD
 def index(request):
     """
     View for the about_page.html
@@ -11,7 +10,6 @@ def index(request):
     context = {}
     template = 'photography/index.html'
     return render(request, template, context)
-=======
 
 
 
@@ -38,4 +36,3 @@ def sample_analyze_sentiment(content):
     response = client.analyze_sentiment(document)
     sentiment = response.document_sentiment
     return('Score: {}'.format(sentiment.score))
->>>>>>> cloud
