@@ -18,6 +18,15 @@ def index(request):
     return render(request, template, context)
 
 
+
+import os
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="auth.json"
+
+from google.cloud import language_v1
+from google.cloud.language_v1 import enums
+import six
+
+
 def sample_analyze_sentiment(content):
 
     client = language_v1.LanguageServiceClient()
