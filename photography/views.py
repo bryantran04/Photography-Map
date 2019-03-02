@@ -18,11 +18,6 @@ def index(request):
     return render(request, template, context)
 
 
-
-
-
-
-
 def sample_analyze_sentiment(content):
 
     client = language_v1.LanguageServiceClient()
@@ -38,3 +33,4 @@ def sample_analyze_sentiment(content):
     response = client.analyze_sentiment(document)
     sentiment = response.document_sentiment
     return('Score: {}'.format(sentiment.score))
+
