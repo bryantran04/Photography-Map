@@ -6,13 +6,10 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    description = models.TextField()
-    zipcode = models.IntegerField()
+    description = models.TextField(blank = True)
+    zipcode = models.IntegerField(blank=False, null=True)
     date_posted = models.DateTimeField(default=timezone.now) 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
-#class Location(models.Model)
-    # for printing in the shell 
-    # def __str__(self):
-    #     return self.title
+
