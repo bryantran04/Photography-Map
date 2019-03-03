@@ -1,6 +1,7 @@
 from django.shortcuts import render, render_to_response
 from .models import Post,Comment,Picture
-import urllib.request   
+from urllib import request, parse
+import json
 
 
 
@@ -27,15 +28,45 @@ def results(request):
     return render_to_response('photography/results.html', {'posts': posts})
 
 
+def api(comments):
+    pos_list = [("None",0.0)]
+    neg_list = [("None",0.0)]
+    neu_list = [("None",0.0)]
+    for comment in comments:
+        data = parse.urlencode({"text":comment.choice_text}).encode()
+        req =  request.Request("http://text-processing.com/api/sentiment/", data=data) # this will make the method "POST"
+        resp = request.urlopen(req)
+        response_text = resp.read()
+        decoded = response_text.decode("utf-8")
+        json_acceptable_string = decoded.replace("'", "\"")
+        d = json.loads(json_acceptable_string)
+        pos = float(d['probability']['pos'])
+        neg = float(d['probability']['neg'])
+        neu = float(d['probability']['neg'])
 
+
+        if (d["label"]=='pos'):
+            pos_list.append((comment.choice_text,pos))
+        elif (d['label']=='neg'):
+            neg_list.append((comment.choice_text,neg))
+        else:
+            neu_list.append((comment.choice_text,neu))
+    pos_list.sort(key=lambda x: x[1], reverse=True)#sort the list by the value
+    neg_list.sort(key=lambda x: x[1], reverse=True)#sort the list by the value
+    neu_list.sort(key=lambda x: x[1], reverse=True)#sort the list by the value
+
+    return pos_list,neg_list,neu_list
 def profile(request, location_id):
     profile=Post.objects.get(id=location_id)
 
     comments = profile.comment_set.all()
     pictures = profile.picture_set.all()
+
+    (pos_list,neg_list,neu_list) = api(comments)
+ 
     # comments=Post.objects.get()
-    return render_to_response('photography/profile.html', {'profile': profile, 'comments':comments,'pictures':pictures})
-    return render_to_response('photography/profile.html', {'profile': profile})
+    return render_to_response('photography/profile.html', {'profile': profile, 'comments':comments,'pictures':pictures,\
+        'pos':pos_list[0][0],'neg':neg_list[0][0],'neu':neu_list[0][0]})
 
 def about(request):
     """
