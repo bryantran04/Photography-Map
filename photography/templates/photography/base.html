@@ -85,10 +85,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/education">ABOUT</a></li>
-        <li><a href="#">BROWSE</a></li>
+        <li><a href="{% url 'about' %}">ABOUT</a></li>
+        <li><a href="{% url 'browse' %}">BROWSE</a></li>
         <li><a href="#">EXPLORE</a></li>
-        <li><a href="#">CONTACT US</a></li>
+        <li><a href="{% url 'contact' %}">CONTACT US</a></li>
       </ul>
     </div>
   </div>
