@@ -17,11 +17,25 @@
     <p>No pictures.</p>
 {% endif %}
 
+<div class="row"> 
+       <div class="container2">
+           <h2>Most Positive</h2>
+           <p>{{ pos }}</p>
+        </div>
+        <div class="container2">
+           <h2>Most Negative</h2>
+           <p>{{ neg }}</p>
+        </div>
+        <div class="container2">
+            <h2>Most Neutral</h2>
+            <p>{{ neu }}</p>
+        </div>
+</div> 
 
 {% if comments %}
-    <ul>
+    <ul class="list-group">
     {% for comment in comments %}
-    <li><h4>{{ comment.choice_text }}</h4></li>
+    <li class="list-group-item"><h4>{{ comment.choice_text }}</h4></li>
     {% endfor %}
     </ul>
 {% else %}
