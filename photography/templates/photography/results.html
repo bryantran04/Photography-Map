@@ -1,0 +1,16 @@
+{% extends 'photography/base.html' %}
+
+{% block content %}
+
+<h1>Results</h1>
+
+<ul>
+{% for post in posts %}
+    <li><a href="{% url 'profile' post.id %}">{{ post.title }}</a></li>
+
+
+{% endfor %}
+</ul>  
+
+
+{% endblock %}

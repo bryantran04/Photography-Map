@@ -1,0 +1,10 @@
+{% extends 'photography/base.html' %}
+
+{% block content %}
+
+<form id="search" action="search/results" method="post">
+    {% csrf_token %}
+      <input class="form-control" type="text" name="search" />
+</form>
+
+{% endblock %}

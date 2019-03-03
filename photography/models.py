@@ -10,6 +10,3 @@ class Post(models.Model):
     zipcode = models.IntegerField(blank=False, null=True)
     date_posted = models.DateTimeField(default=timezone.now) 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-
