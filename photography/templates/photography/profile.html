@@ -4,10 +4,30 @@
 
 
 
-<h1>{{ profile.description }}</h1>
+<h3>{{ profile.description }}</h3>
 
 
-</ul>  
+{% if pictures %}
+    <ul>
+    {% for picture in pictures %}
+    <li><img style="display:block; margin:auto; padding-bottom: 20px;"src="{{picture.choice_text}}" width=30% height=30%></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pictures.</p>
+{% endif %}
+
+
+{% if comments %}
+    <ul>
+    {% for comment in comments %}
+    <li><h4>{{ comment.choice_text }}</h4></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No comments.</p>
+{% endif %}
+
 
 
 {% endblock %}

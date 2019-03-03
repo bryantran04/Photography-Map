@@ -1,5 +1,5 @@
 from django.shortcuts import render, render_to_response
-from .models import Post
+from .models import Post,Comment,Picture
 import urllib.request   
 
 
@@ -30,4 +30,7 @@ def results(request):
 def profile(request, location_id):
     profile=Post.objects.get(id=location_id)
 
-    return render_to_response('photography/profile.html', {'profile': profile})
+    comments = profile.comment_set.all()
+    pictures = profile.picture_set.all()
+    # comments=Post.objects.get()
+    return render_to_response('photography/profile.html', {'profile': profile, 'comments':comments,'pictures':pictures})
