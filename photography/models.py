@@ -10,3 +10,13 @@ class Post(models.Model):
     zipcode = models.IntegerField(blank=False, null=True)
     date_posted = models.DateTimeField(default=timezone.now) 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class Picture(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=400)
+    
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=400)
+
