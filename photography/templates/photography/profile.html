@@ -3,7 +3,7 @@
 {% block content %}
 
 
-
+<div class="container2">
 <h3>{{ profile.description }}</h3>
 
 
@@ -16,6 +16,7 @@
 {% else %}
     <p>No pictures.</p>
 {% endif %}
+</div>
 
 <div class="row"> 
        <div class="container2">
@@ -32,6 +33,7 @@
         </div>
 </div> 
 
+<div class="container2">
 {% if comments %}
     <ul class="list-group">
     {% for comment in comments %}
@@ -41,7 +43,7 @@
 {% else %}
     <p>No comments.</p>
 {% endif %}
-
+</div>
 
 
 {% endblock %}

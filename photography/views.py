@@ -56,6 +56,7 @@ def api(comments):
     neu_list.sort(key=lambda x: x[1], reverse=True)#sort the list by the value
 
     return pos_list,neg_list,neu_list
+
 def profile(request, location_id):
     profile=Post.objects.get(id=location_id)
 
@@ -69,22 +70,23 @@ def profile(request, location_id):
         'pos':pos_list[0][0],'neg':neg_list[0][0],'neu':neu_list[0][0]})
 
 def about(request):
-    """
-    View for the about.html
-    :param request:
-    :return renders the request parameter, html template, and the context list:
-    """
     context = {}
     template = 'photography/about.html'
     return render(request, template, context)
 
-def explore(request):
-    """
-    View for the about.html
-    :param request:
-    :return renders the request parameter, html template, and the context list:
-    """
+def create(request):
+    if request.method == "POST":
+        new_location = request.POST.get('location')
+        new_caption = request.POST.get('description')
+        new_zipcode = request.POST.get('zipcode')
+        new_date = request.POST.get('date_posted')
+        new_author = request.POST.get('author')
+        Post.objects.create(location = new_location, description = new_caption, zipcode = new_zipcode, date_posted = new_date, author = new_author)
     context = {}
-    template = 'photography/explore.html'
-    return render(request, template, context)
+    return render(request, 'photography/create_post.html', context)
+
+def explore(request):
+    queryset = Post.objects.all()
+    context = {'object_list': queryset}
+    return render(request, 'photography/explore.html', context)
 

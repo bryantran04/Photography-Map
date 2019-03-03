@@ -3,7 +3,24 @@
 {% block content %}
 
 <div class="container-fluid bg-3 text-center">    
-  <h3 class="margin">EXPLORE PAGE</h3><br>
+  <h3 class="margin">EXPLORE</h3><br>
+
+  {% for instance in object_list %}
+    <div class="col-md-4">
+      <div class="thumbnail">
+          <img src="static/photography/images/doggo.jpg" style="width:100%">
+          <div class="caption">
+
+            <p><i>{{ instance.location }} (zipcode: {{ instance.zipcode }})</i></p></center>
+            <p><b>{{ instance.author }} </b>{{ instance.description }} </p>
+            <p><i><b>Date Posted: </b>{{ instance.date_posted }}</i></p>
+
+          </div>
+        </a>
+      </div>
+  
+    </div>
+  {% endfor %}
 
 </div>
 
